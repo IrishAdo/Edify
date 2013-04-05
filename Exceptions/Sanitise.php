@@ -9,7 +9,7 @@ namespace Edify\Exceptions;
 /**
  * Description of Sanitise
  *
- * @author IrishAdo <irishado@php-programmers.net>
+ * @author IrishAdo <irishado@hotmail.com>
  */
 class Sanitise extends \Exception{
 

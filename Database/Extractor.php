@@ -6,7 +6,7 @@ namespace Edify\Database;
  * Extract a Database and put each table into a Model Object
  *
  * @licence http://php-programmers/licences/Freetard FreeTard licence
- * @author IrishAdo <irishado@php-programmers.net>
+ * @author IrishAdo <irishado@hotmail.com>
  */
 class Extractor {
 
@@ -93,8 +93,8 @@ namespace " . $this->destinationNameSpace . $properties["schema_name"] . ";
 /**
   * $class implements a Database Model Object
   *
-  * @licence http://php-programmers/licences/Freetard FreeTard licence
-  * @author IrishAdo <irishado@php-programmers.net>
+  * @licence FreeTard licence
+  * @author IrishAdo <irishado@hotmail.com>
   */;
 class $class extends \Edify\Database\Model {
     var \$databaseName = \"" . $properties["schema_name"] . "\";

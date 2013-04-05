@@ -10,7 +10,7 @@ namespace Edify\Utils;
 /**
  * Sanitise your data
  *
- * @author IrishAdo <irishado@php-programmers.net>
+ * @author IrishAdo <irishado@hotmail.com>
  */
 class Sanitise {
 
@@ -50,9 +50,6 @@ class Sanitise {
         }
         if ($maxLength!=-1 && strlen($val) > $maxLength) {
             throw new \Edify\Exceptions\Sanitise("Value supplied is not a String - 00000002");
-        }
-        if ($val === (string) $val) {
-            throw new \Edify\Exceptions\Sanitise("Value supplied is not a String - 00000003");
         }
         return (string) $val;
     }

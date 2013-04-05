@@ -11,7 +11,7 @@ namespace Edify\Database;
  * or to pass a database table object and tell it to save it will then work out 
  * if it is an insert or update that is required to save it.
  *
- * @author IrishAdo <irishado@php-programmers.net>
+ * @author IrishAdo <irishado@hotmail.com>
  */
 class Record {
 
@@ -57,7 +57,7 @@ class Record {
 
     /**
      * execute a SQL statement against the model
-     * @author IrishAdo <irishado@php-programmers.net>
+     * @author IrishAdo <irishado@hotmail.com>
      * @param String SQL Statement to execute
      * @param Boolean $cache
      * @return \Edify\Controller\model

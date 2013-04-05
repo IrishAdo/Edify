@@ -13,7 +13,7 @@ use Exception;
  * This allows you to not worry about including a class as long as the class file 
  * follows the Standard for namespaces <vender>/path/of/class.php
  * 
- * @author IrishAdo <irishado@php-programmers.net>
+ * @author IrishAdo <irishado@hotmail.com>
  * @licence Freetard - do what you wish technology, give back, keep, sell up to you.
  */
 class Loader {
@@ -33,7 +33,7 @@ class Loader {
 
     /** initalise the class and add the Path to this Library Vendor
      * 
-     * @author IrishAdo <irishado@php-programmers.net>
+     * @author IrishAdo <irishado@hotmail.com>
      */
     public static function init() {
         if (self::$instance == NULL) {
@@ -46,7 +46,7 @@ class Loader {
 
     /** Constructor which sets the loader function to be an auto loader
      *
-     * @author IrishAdo <irishado@php-programmers.net>
+     * @author IrishAdo <irishado@hotmail.com>
      */
     public function __construct() {
         spl_autoload_register(array($this, "auto"));
@@ -54,7 +54,7 @@ class Loader {
 
     /** Preprocessor function which will attempt to include a file contains a class before the new command executes
      * 
-     * @author IrishAdo <irishado@php-programmers.net>
+     * @author IrishAdo <irishado@hotmail.com>
      * @param Class name 
      */
     public function auto($class) {
@@ -97,7 +97,7 @@ class Loader {
      * Classes for that namespace.  This allows developers to have many different
      * namespaces and for the Autoloader functionality to know where to go for each.
      *
-     * @author IrishAdo <irishado@php-programmers.net>
+     * @author IrishAdo <irishado@hotmail.com>
      * @param String the name of the Vendor
      * @param String Path to look for the class file.
      * @example self::AddVendorPath('Edify', PP_NET_CL_PATH);

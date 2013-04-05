@@ -5,7 +5,7 @@ use PDO;
 /**
  *
  * @licence http://php-programmers/licences/Freetard FreeTard licence
- * @author IrishAdo <irishado@php-programmers.net>
+ * @author IrishAdo <irishado@hotmail.com>
  */
 class Server {
 

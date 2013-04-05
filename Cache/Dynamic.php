@@ -8,7 +8,7 @@ namespace Edify\Cache;
  * a NULL
  *
  * @licence FreeTard
- * @author IrishAdo <irishado@php-programmers.net>
+ * @author IrishAdo <irishado@hotmail.com>
  */
 class Dynamic{
 
@@ -60,7 +60,7 @@ class Dynamic{
      *
      * @param String $UniqueFileId the URL of the page to load
      * @param String $buffer the buffer to save
-     * @author IrishAdo <irishado@php-programmers.net>
+     * @author IrishAdo <irishado@hotmail.com>
      */
 
     public function save($parameters) {

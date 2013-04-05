@@ -6,7 +6,7 @@ namespace Edify\Database;
  * A Database Model Object
  *
  * @licence http://php-programmers/licences/Freetard FreeTard licence
- * @author IrishAdo <irishado@php-programmers.net>
+ * @author IrishAdo <irishado@hotmail.com>
  */
 class Model {
 

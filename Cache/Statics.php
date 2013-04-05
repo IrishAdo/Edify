@@ -7,7 +7,7 @@ namespace Edify\Cache;
  * the statics cache directory.
  *
  * @licence FreeTard
- * @author IrishAdo <irishado@php-programmers.net>
+ * @author IrishAdo <irishado@hotmail.com>
  */
 class Statics {
 
@@ -62,7 +62,7 @@ class Statics {
      *
      * @param String $UniqueFileId the URL of the page to load
      * @param String $buffer the buffer to save
-     * @author IrishAdo <irishado@php-programmers.net>
+     * @author IrishAdo <irishado@hotmail.com>
      */
 
     public function save($parameters) {

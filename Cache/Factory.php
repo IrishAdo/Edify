@@ -19,7 +19,7 @@ namespace Edify\Cache;
  *
  * @example  $status = Cache::checkPage("index.html",300);
  * @licence http://php-programmers/licences/Freetard FreeTard licence
- * @author IrishAdo <irishado@php-programmers.net>
+ * @author IrishAdo <irishado@hotmail.com>
  */
 class Factory {
 
@@ -48,7 +48,7 @@ class Factory {
      * @param String $driver the driver is the namespace that
      * @param String $cachePath the location of the cache root path
      * @param String $language What language is the page in defaults to EN for english
-     * @author IrishAdo <irishado@php-programmers.net>
+     * @author IrishAdo <irishado@hotmail.com>
      */
     public function __construct($driver, $cachePath, $cachingLanguage = 'EN') {
 

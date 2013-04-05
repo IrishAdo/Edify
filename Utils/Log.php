@@ -11,7 +11,7 @@ if (!defined("ACCESS_LOG_PATH")){
 /** Define the Log class
  * 
  * This allows you to log information into the error_log file
- * @author IrishAdo <irishado@php-programmers.net>
+ * @author IrishAdo <irishado@hotmail.com>
  * @licence Freetard - do what you wish technology, give back, keep, sell up to you.
  */
 class Log {
@@ -29,7 +29,7 @@ class Log {
     private static $instance;
 
     /** Initialise the single instance
-     * @author IrishAdo <irishado@php-programmers.net>
+     * @author IrishAdo <irishado@hotmail.com>
      */
     public static function init() {
         if (self::$instance == NULL) {
@@ -39,7 +39,7 @@ class Log {
     }
 
     /** Constructor for this class
-     * @author IrishAdo <irishado@php-programmers.net>
+     * @author IrishAdo <irishado@hotmail.com>
      */
     public function __construct() {
 
@@ -47,7 +47,7 @@ class Log {
 
     /** Allow the setting of the Debug level this will allow you to specify the error handles that will be reported in the error log.
      * @param String Handle to allow to debug.
-     * @author IrishAdo <irishado@php-programmers.net>
+     * @author IrishAdo <irishado@hotmail.com>
      */
     static function setDebugLevel($handleString) {
         self::$debugLevel = $handleString;
@@ -57,7 +57,7 @@ class Log {
      * 
      * @parma String handle to debug
      * @param String statement to write ot the log.
-     * @author IrishAdo <irishado@php-programmers.net>
+     * @author IrishAdo <irishado@hotmail.com>
      * @example /Utils/Log::debugLog("Database", $sqlStatement);
      */
     static function debugLog($handle, $statement) {
@@ -80,7 +80,7 @@ class Log {
      * 
      * @parma String handle to debug
      * @param String statement to write ot the log.
-     * @author IrishAdo <irishado@php-programmers.net>
+     * @author IrishAdo <irishado@hotmail.com>
      * @example /Utils/Log::debugError("Database", "Connection failed!");
      */
     static function debugError($handle, $statement) {
