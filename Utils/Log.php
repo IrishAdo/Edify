@@ -48,8 +48,19 @@ class Log {
     /** Allow the setting of the Debug level this will allow you to specify the error handles that will be reported in the error log.
      * @param String Handle to allow to debug.
      * @author IrishAdo <irishado@hotmail.com>
+     * @deprecated since 6th April 2013
+     * @todo Remove this function by June (2 months)
      */
     static function setDebugLevel($handleString) {
+        error_log("using a deprecated function ".__CLASS__." - ". __FUNCTION__ . " - " . __FILE__);
+        self::setIssueLevel( $handleString );
+    }
+
+    /** Allow the setting of the Debug level this will allow you to specify the error handles that will be reported in the error log.
+     * @param String Handle to allow to debug.
+     * @author IrishAdo <irishado@hotmail.com>
+     */
+    static function setIssueLevel($handleString) {
         self::$debugLevel = $handleString;
     }
 
@@ -59,8 +70,24 @@ class Log {
      * @param String statement to write ot the log.
      * @author IrishAdo <irishado@hotmail.com>
      * @example /Utils/Log::debugLog("Database", $sqlStatement);
+     * @deprecated since 6th April 2013
+     * @todo Remove this function by June (2 months)
      */
     static function debugLog($handle, $statement) {
+        error_log("using a deprecated function ".__CLASS__." - ". __FUNCTION__ . " - " . __FILE__);
+        self::Issue($handle, $statement);
+    }
+
+
+    /** add a statement to the error log if the $handle is listed in the debugLevel
+     *
+     * @parma String handle to debug
+     * @param String statement to write ot the log.
+     * @author IrishAdo <irishado@hotmail.com>
+     * @example /Utils/Log::debugLog("Database", $sqlStatement);
+     *
+     */
+    static function Issue($handle, $statement) {
         if (
         // if debug is ALL then write message to error_log file
                 self::$debugLevel == "ALL" ||
@@ -87,8 +114,34 @@ class Log {
         error_log("$handle: $statement\n");
     }
 
-    static function access_log($msg) {
+    /**
+     * Record information to a log to represent access information
+     *
+     * This log allows you to record infomration so that it does not
+     * appear int he normal php Error Log.
+     *
+     * @param type $msg
+     * @author IrishAdo <irishado@hotmail.com>
+     */
+    static function Access($msg) {
         error_log("$msg\r\n", 3, ACCESS_LOG_PATH);
+    }
+
+    /**
+     * Record information to a log to represent access information
+     *
+     * This log allows you to record infomration so that it does not
+     * appear int he normal php Error Log.
+     *
+     * @param type $msg
+     * @author IrishAdo <irishado@hotmail.com>
+     * @deprecated since 6th April 2013
+     * @todo Remove this function by June (2 months)
+
+     */
+    static function access_log($msg) {
+        error_log("using a deprecated function ".__CLASS__." - ". __FUNCTION__ . " - " . __FILE__);
+        self::Access($msg);
     }
 
 }
