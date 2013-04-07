@@ -98,6 +98,22 @@ class Sanitise {
 
         return (string) $val;
     }
+
+    /**
+     * check if a string is an email address
+     * @param type $val
+     * @return type String
+     * @throws \Edify\Exceptions\Sanitise
+     */
+    function isEmail($val){
+        $validAddress = filter_var($val, FILTER_VALIDATE_EMAIL);
+
+        if($val!== $validAddress){
+            throw new \Edify\Exceptions\Sanitise("Value supplied is not a Email - 00000001");
+        }
+
+        return (string) $validAddress;
+    }
 }
 
 ?>
