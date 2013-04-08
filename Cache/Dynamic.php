@@ -72,7 +72,7 @@ class Dynamic{
         }
         $url = $parameters["url"];
         $buffer = $parameters["buffer"];
-        \Edify\Utils\Log::debugLog("[Edify\Cache\Dynamic]", $url);
+        \Edify\Utils\Log::Issue("[Edify\Cache\Dynamic]", $url);
         $this->parentFactory->saveFile($this->parentFactory->getFileName(__CLASS__, $url), $buffer);
     }
 

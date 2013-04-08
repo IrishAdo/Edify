@@ -25,7 +25,7 @@ class Model {
 
 	public function __get($key) {
 		if (!isset($this->properties[$key])) {
-			\Edify\Utils\Log::debugLog("[Edify\Database\Model]", "Attempting to retrieve a non existant key $key on $this->tableName");
+			\Edify\Utils\Log::Issue("[Edify\Database\Model]", "Attempting to retrieve a non existant key $key on $this->tableName");
 		} else {
 			return (isset($this->properties[$key]) && $this->properties[$key] !== self::__UNDEFINED__) ? $this->properties[$key] : null;
 		}
@@ -34,7 +34,7 @@ class Model {
 
 	public function __set($key, $value) {
 		if (!isset($this->properties[$key])) {
-            \Edify\Utils\Log::debugLog("[Edify\Database\Model]", "Attempting to set a non existant key [$key] with the value [" . print_R($value,true) . "] on $this->tableName");
+            \Edify\Utils\Log::Issue("[Edify\Database\Model]", "Attempting to set a non existant key [$key] with the value [" . print_R($value,true) . "] on $this->tableName");
 		} else {
 			if (!is_null($value)) {
 				$this->properties[$key] = $value;

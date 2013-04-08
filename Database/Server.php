@@ -47,7 +47,7 @@ class Server {
      */
     function checkForDriver($driverName) {
         if (!in_array($driverName, PDO::getAvailableDrivers())) {
-            \Edify\Utils\Log::debugLog("[Edify\Database\Server]", "Driver " . $driverName . " was not found to be installed PDO::getAvailableDrivers()");
+            \Edify\Utils\Log::Issue("[Edify\Database\Server]", "Driver " . $driverName . " was not found to be installed PDO::getAvailableDrivers()");
             throw new PDOException("The specified driver is not available");
             /// not sure if this would ever get executed but my OCD wants it in.
             return false;
@@ -65,7 +65,7 @@ class Server {
      * @return type
      */
     function getConnection($database, $host, $username, $password) {
-        \Edify\Utils\Log::debugLog("[Edify\Database\Server]", "Attempting to connect to a database using driver " . $this->driver->getType());
+        \Edify\Utils\Log::Issue("[Edify\Database\Server]", "Attempting to connect to a database using driver " . $this->driver->getType());
         $this->driver->getConnection($database, $host, $username, $password);
     }
 

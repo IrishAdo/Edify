@@ -113,16 +113,16 @@ class $class extends \Edify\Database\Model {
 ?>";
             $filename = $this->destinationPath . "/" . $properties["schema_name"] . "/" . $class . ".php";
 
-            \Edify\Utils\Log::debugLog("[Edify\Database\Extractor]", "Saving class $class to $filename");
+            \Edify\Utils\Log::Issue("[Edify\Database\Extractor]", "Saving class $class to $filename");
             $dirPath = dirname($filename);
             if (!(file_exists($dirPath) && is_dir($dirPath)) && !mkdir($dirPath, 0770, true)) {
-                \Edify\Utils\Log::debugLog("[Edify\Database\Extractor]", "Failed to create directory " . dirname($filename));
+                \Edify\Utils\Log::Issue("[Edify\Database\Extractor]", "Failed to create directory " . dirname($filename));
             }
 
             $filePointer = fopen($filename, "w");
             fwrite($filePointer, $buffer);
             fclose($filePointer);
-            \Edify\Utils\Log::debugLog("[Edify\Database\Extractor]", "wrote $filename");
+            \Edify\Utils\Log::Issue("[Edify\Database\Extractor]", "wrote $filename");
         }
     }
 

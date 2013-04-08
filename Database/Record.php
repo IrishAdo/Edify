@@ -63,7 +63,7 @@ class Record {
      * @return \Edify\Controller\model
      */
     function execute($Statement, $parameters = Array(), $fetchType = \PDO::FETCH_CLASS) {
-        //\Edify\Utils\Log::debugLog("[".$this->logHandle."]", print_R($parameters, true));
+        //\Edify\Utils\Log::Issue("[".$this->logHandle."]", print_R($parameters, true));
         $Statement->execute($parameters);
         if ($fetchType == \PDO::FETCH_CLASS) {
             return $Statement->fetchAll($fetchType, $this->model);
@@ -119,7 +119,7 @@ class Record {
      * @return Object return the supplied object insert make primary key have value.
      */
     function save($obj) {
-        \Edify\Utils\Log::debugLog("[" . $this->logHandle . "]", "attempting to save object [" . $this->databaseName . "." . $obj->tableName . " => $this->model] ");
+        \Edify\Utils\Log::Issue("[" . $this->logHandle . "]", "attempting to save object [" . $this->databaseName . "." . $obj->tableName . " => $this->model] ");
         if (is_object($obj)) {
             if ($obj->getPrimaryKeyValue() < 0) {
                 return $this->insert($obj);
@@ -163,7 +163,7 @@ class Record {
         if (!($this->primaryKey == "" || is_null($this->primaryKey))) {
             $obj->$primaryKey = $this->dbObject->getInsertId();
         }
-        \Edify\Utils\Log::debugLog("[model]", "Setting primary key after insert [$primaryKey] = [" . $obj->$primaryKey . "]");
+        \Edify\Utils\Log::Issue("[model]", "Setting primary key after insert [$primaryKey] = [" . $obj->$primaryKey . "]");
 
         return $obj;
     }

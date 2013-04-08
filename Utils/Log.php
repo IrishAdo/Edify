@@ -84,7 +84,7 @@ class Log {
      * @parma String handle to debug
      * @param String statement to write ot the log.
      * @author IrishAdo <irishado@hotmail.com>
-     * @example /Utils/Log::debugLog("Database", $sqlStatement);
+     * @example /Utils/Log::Issue("Database", $sqlStatement);
      *
      */
     static function Issue($handle, $statement) {
