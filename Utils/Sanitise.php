@@ -24,13 +24,9 @@ class Sanitise {
      * @return int
      * @author ja at krystof dot org (php.net manual)
      */
-    function isNatural($val, $acceptzero = false) {
+    function isNatural($val) {
         $return = ((string) $val === (string) (int) $val);
-        if ($acceptzero)
-            $base = 0;
-        else
-            $base = 1;
-        if (!$return || intval($val) < $base){
+        if (!$return || (filter_var($val,FILTER_VALIDATE_INT) === false)){
             throw new \Edify\Exceptions\Sanitise("Value supplied is not a natural whole number - 00000001");
         }
         return (int) $val;
