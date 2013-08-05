@@ -81,10 +81,27 @@ class Record {
      * @return type
      */
     function select($parameters = Array(), $orderby = "") {
-        $sqlParameters = Array();
         $sql = "select ";
         $sql .= implode(", ", $this->keys);
         $sql .= " from " . $this->tableName . " " . $this->dbObject->getLockStatement() . " where ";
+        list($sqlFields, $sqlParameters) = $this->convertParameters($parameters);
+        $sql .= $sqlFields;
+        if ($orderby != "") {
+            $sql .= " order by $orderby";
+        }
+        error_log($sql);
+        $pdoStatement = $this->dbObject->prepare($sql);
+        return $this->execute($pdoStatement, $sqlParameters);
+    }
+
+    /**
+     * get the SQL fields and the SQL parameters converted correctly.
+     * @param type $parameters
+     * @return Array
+     */
+    function convertParameters($parameters) {
+        $sql = "";
+        $sqlParameters = Array();
         foreach ($parameters as $key => $value) {
             if (in_array($key, $this->keys)) {
                 $sql .= $key . " = :$key and ";
@@ -92,12 +109,9 @@ class Record {
             }
         }
         $sql .= " 1=1 ";
-        if ($orderby != "") {
-            $sql .= " order by $orderby";
-        }
-        $pdoStatement = $this->dbObject->prepare($sql);
-        return $this->execute($pdoStatement, $sqlParameters);
+        return Array($sql, $sqlParameters);
     }
+
     /**
      * save a list of objects for this record type.
      *
@@ -147,6 +161,25 @@ class Record {
         $pdoStatement->execute(Array(":uniqueId" => $uniqueId));
         return true;
     }
+
+    /**
+     * Delete a record of this type by a selection of parameters
+     * @param Array $parameters
+     * @return boolean
+     */
+    function deleteUsing($parameters) {
+        if ($this->primaryKey == "" || is_null($this->primaryKey)) {
+            return false;
+        }
+        list($sqlFields, $sqlParameters) = $this->convertParameters($parameters);
+
+        $statementSQL = "delete from " . $this->tableName . " where " . $sqlFields;
+
+        $pdoStatement = $this->dbObject->prepare($statementSQL);
+        $pdoStatement->execute($sqlParameters);
+        return true;
+    }
+
     /**
      * take an object and insert it into a table then extract the primary key
      * and update the record.  return the object with its new id.
@@ -167,6 +200,7 @@ class Record {
 
         return $obj;
     }
+
     /**
      * update an existing record
      * @param type $obj
@@ -176,7 +210,7 @@ class Record {
         $sql = "update " . $this->tableName . " set " . implode(",", $this->updateStatementList) . " where $this->primaryKey=:$this->primaryKey";
         $pdoStatement = $this->dbObject->prepare($sql);
         $parameters = $this->prepareParameters($obj, $this->keys);
-        $this->execute($pdoStatement,$parameters, \PDO::FETCH_ASSOC);
+        $this->execute($pdoStatement, $parameters, \PDO::FETCH_ASSOC);
         return $obj;
     }
 
