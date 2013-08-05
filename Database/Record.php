@@ -89,7 +89,6 @@ class Record {
         if ($orderby != "") {
             $sql .= " order by $orderby";
         }
-        error_log($sql);
         $pdoStatement = $this->dbObject->prepare($sql);
         return $this->execute($pdoStatement, $sqlParameters);
     }
