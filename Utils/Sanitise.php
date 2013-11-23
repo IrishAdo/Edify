@@ -15,7 +15,7 @@ namespace Edify\Utils;
 class Sanitise {
 
     /**
-     * Is the parameter a natural number
+     * IsNatural the parameter a natural number
      *
      * A natural number is a whole number an Integer
      *
@@ -33,7 +33,8 @@ class Sanitise {
     }
 
     /**
-     * is_text is used to test if a value is a string or not
+     * isText is used to test if a value is a string or not it strips tags from
+     * the buffer as that would be HTML
      *
      * @throw Edify\Exception\Sanitise
      * @param type $val
@@ -42,14 +43,32 @@ class Sanitise {
      */
     function isText($val, $maxLength = -1) {
         if (!is_string($val)) {
-            throw new \Edify\Exceptions\Sanitise("Value supplied is not a String - 00000001");
+            throw new \Edify\Exceptions\Sanitise("Value supplied is not a String - 00000002");
         }
         if ($maxLength!=-1 && strlen($val) > $maxLength) {
-            throw new \Edify\Exceptions\Sanitise("Value supplied is not a String - 00000002");
+            throw new \Edify\Exceptions\Sanitise("Value supplied is not a String - 00000003");
+        }
+        return (string) strip_tags($val);
+    }
+
+
+    /**
+     * isHTML does exactly the same as isText except that it does not strip tags from the buffer
+     *
+     * @throw Edify\Exception\Sanitise
+     * @param type $val
+     * @param type $maxLength
+     * @return String
+     */
+    function isHTML($val, $maxLength = -1) {
+        if (!is_string($val)) {
+            throw new \Edify\Exceptions\Sanitise("Value supplied is not a String - 00000004");
+        }
+        if ($maxLength!=-1 && strlen($val) > $maxLength) {
+            throw new \Edify\Exceptions\Sanitise("Value supplied is not a String - 00000005");
         }
         return (string) $val;
     }
-
     /**
      * Is the parameter a real number
      *
@@ -63,11 +82,11 @@ class Sanitise {
         $return = ((string) $val === (string) (float) ($val));
 
         if($val!== "0" && floatval($val)==(float)0){
-            throw new \Edify\Exceptions\Sanitise("Value supplied is not a real number - 00000001");
+            throw new \Edify\Exceptions\Sanitise("Value supplied is not a real number - 00000006");
         }
         // the example 123.40 when passed to floatval becomes 123.4
         if (!$return && floatval($val)==(float)0){
-            throw new \Edify\Exceptions\Sanitise("Value supplied is not a real number - 00000002");
+            throw new \Edify\Exceptions\Sanitise("Value supplied is not a real number - 00000007");
         }
         return (float) $val;
     }
@@ -89,7 +108,7 @@ class Sanitise {
      */
     function isGUID($val) {
         if(preg_match('/([0-9A-F]{8})\-([0-9A-F]{4})\-([0-9A-F]{4})\-([0-9A-F]{4})\-([0-9A-F]{12})/', $val)===false){
-            throw new \Edify\Exceptions\Sanitise("Value supplied is not a GUID - 00000001");
+            throw new \Edify\Exceptions\Sanitise("Value supplied is not a GUID - 00000008");
         }
 
         return (string) $val;
@@ -105,7 +124,7 @@ class Sanitise {
         $validAddress = filter_var($val, FILTER_VALIDATE_EMAIL);
 
         if($val!== $validAddress){
-            throw new \Edify\Exceptions\Sanitise("Value supplied is not a Email - 00000001");
+            throw new \Edify\Exceptions\Sanitise("Value supplied is not a Email - 00000009");
         }
 
         return (string) $validAddress;

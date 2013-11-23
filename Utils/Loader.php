@@ -5,6 +5,7 @@
  */
 
 namespace Edify\Utils;
+
 use Exception;
 
 /** Define the Loader class that allows autoloading of classes with out have to
@@ -39,7 +40,7 @@ class Loader {
         if (self::$instance == NULL) {
             self::$instance = new self();
         }
-        
+
         self::registerVendor('Edify', dirname(dirname(__FILE__)));
         return self::$instance;
     }
@@ -69,21 +70,21 @@ class Loader {
 
         $path = implode("/", $parts);
 
+        // work out the path to look for the file based on the Vendors path.
+        $checkPathforFile = realpath(self::$vendors[$choosenVendor]) . "/" . $path . ".php";
         // if we have not listed the path for that vendor then we don't know where it is so die.
         if (!isset(self::$vendors[$choosenVendor])) {
             error_log("[Edify\Utils\Loader] Vendor $choosenVendor not found use \Edify\Utils\Loader::AddVendorPath(\$vendor,\$path);");
-            throw new Exception('Sorry we could not find a class located at '. $checkPathforFile);
+            throw new Exception('Sorry we could not find a class located at ' . $checkPathforFile);
         } else {
 
-            // work out the path to look for the file based on the Vendors path.
-            $checkPathforFile = realpath(self::$vendors[$choosenVendor]) . "/" . $path . ".php";
 
             // if the file does exist then include it or die.
             if (file_exists($checkPathforFile)) {
                 require_once($checkPathforFile);
             } else {
                 error_log("[Edify\Utils\Loader] We could not find the following file in the specified vendor -> $checkPathforFile");
-                throw new Exception('Sorry we could not find a class located at  '. $checkPathforFile);
+                throw new Exception('Sorry we could not find a class located at  ' . $checkPathforFile);
             }
         }
     }

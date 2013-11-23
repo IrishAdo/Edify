@@ -52,7 +52,7 @@ class Log {
      * @todo Remove this function by June (2 months)
      */
     static function setDebugLevel($handleString) {
-        error_log("using a deprecated function ".__CLASS__." - ". __FUNCTION__ . " - " . __FILE__);
+        error_log("using a deprecated function ".__CLASS__." - ". __FUNCTION__ . " - " . __FILE__." use setIssueLevel() instead.");
         self::setIssueLevel( $handleString );
     }
 
