@@ -2,15 +2,15 @@
 
 namespace Edify\Exceptions;
 /**
- * Exception generated for the Sanitise class.
+ * Exception raised in the Authorisation factory
  */
 
 /**
- * Description of Sanitise
+ * Description of Auth
  *
  * @author IrishAdo <me@irishado.com>
  */
-class Sanitise extends \Exception{
+class Auth extends \Exception{
 
     protected $severity;
 

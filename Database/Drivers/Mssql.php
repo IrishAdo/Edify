@@ -5,7 +5,7 @@ namespace Edify\Database\Drivers;
  *
  *
  * @licence http://php-programmers/licences/Freetard FreeTard licence
- * @author IrishAdo <irishado@hotmail.com>
+ * @author IrishAdo <me@irishado.com>
  */
 class Mssql {
     private $parentObject = null;

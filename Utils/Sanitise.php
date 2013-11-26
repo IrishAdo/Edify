@@ -10,7 +10,7 @@ namespace Edify\Utils;
 /**
  * Sanitise your data
  *
- * @author IrishAdo <irishado@hotmail.com>
+ * @author IrishAdo <me@irishado.com>
  */
 class Sanitise {
 

@@ -8,7 +8,7 @@ namespace Edify\Utils;
 /**
  * A GUID class for functions based around the production of GUID strings
  *
- * @author IrishAdo <irishado@hotmail.com>
+ * @author IrishAdo <me@irishado.com>
  */
 class Guid {
     /**

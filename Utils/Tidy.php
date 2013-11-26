@@ -8,7 +8,7 @@ namespace Edify\Utils;
 /**
  * A wrapper for the php tidy function which will fix html content.
  *
- * @author IrishAdo <irishado@php-programmers.net>
+ * @author IrishAdo <me@irishado.com>
  */
 class Tidy {
 

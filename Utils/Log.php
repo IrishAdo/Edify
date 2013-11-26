@@ -11,7 +11,7 @@ if (!defined("ACCESS_LOG_PATH")){
 /** Define the Log class
  * 
  * This allows you to log information into the error_log file
- * @author IrishAdo <irishado@hotmail.com>
+ * @author IrishAdo <me@irishado.com>
  * @licence Freetard - do what you wish technology, give back, keep, sell up to you.
  */
 class Log {
@@ -29,7 +29,7 @@ class Log {
     private static $instance;
 
     /** Initialise the single instance
-     * @author IrishAdo <irishado@hotmail.com>
+     * @author IrishAdo <me@irishado.com>
      */
     public static function init() {
         if (self::$instance == NULL) {
@@ -39,7 +39,7 @@ class Log {
     }
 
     /** Constructor for this class
-     * @author IrishAdo <irishado@hotmail.com>
+     * @author IrishAdo <me@irishado.com>
      */
     public function __construct() {
 
@@ -47,7 +47,7 @@ class Log {
 
     /** Allow the setting of the Debug level this will allow you to specify the error handles that will be reported in the error log.
      * @param String Handle to allow to debug.
-     * @author IrishAdo <irishado@hotmail.com>
+     * @author IrishAdo <me@irishado.com>
      * @deprecated since 6th April 2013
      * @todo Remove this function by June (2 months)
      */
@@ -58,7 +58,7 @@ class Log {
 
     /** Allow the setting of the Debug level this will allow you to specify the error handles that will be reported in the error log.
      * @param String Handle to allow to debug.
-     * @author IrishAdo <irishado@hotmail.com>
+     * @author IrishAdo <me@irishado.com>
      */
     static function setIssueLevel($handleString) {
         self::$debugLevel = $handleString;
@@ -68,7 +68,7 @@ class Log {
      * 
      * @parma String handle to debug
      * @param String statement to write ot the log.
-     * @author IrishAdo <irishado@hotmail.com>
+     * @author IrishAdo <me@irishado.com>
      * @example /Utils/Log::debugLog("Database", $sqlStatement);
      * @deprecated since 6th April 2013
      * @todo Remove this function by June (2 months)
@@ -83,7 +83,7 @@ class Log {
      *
      * @parma String handle to debug
      * @param String statement to write ot the log.
-     * @author IrishAdo <irishado@hotmail.com>
+     * @author IrishAdo <me@irishado.com>
      * @example /Utils/Log::Issue("Database", $sqlStatement);
      *
      */
@@ -107,7 +107,7 @@ class Log {
      * 
      * @parma String handle to debug
      * @param String statement to write ot the log.
-     * @author IrishAdo <irishado@hotmail.com>
+     * @author IrishAdo <me@irishado.com>
      * @example /Utils/Log::debugError("Database", "Connection failed!");
      */
     static function debugError($handle, $statement) {
@@ -121,7 +121,7 @@ class Log {
      * appear int he normal php Error Log.
      *
      * @param type $msg
-     * @author IrishAdo <irishado@hotmail.com>
+     * @author IrishAdo <me@irishado.com>
      */
     static function Access($msg) {
         error_log("$msg\r\n", 3, ACCESS_LOG_PATH);
@@ -134,7 +134,7 @@ class Log {
      * appear int he normal php Error Log.
      *
      * @param type $msg
-     * @author IrishAdo <irishado@hotmail.com>
+     * @author IrishAdo <me@irishado.com>
      * @deprecated since 6th April 2013
      * @todo Remove this function by June (2 months)
 
