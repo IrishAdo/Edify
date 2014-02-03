@@ -101,13 +101,23 @@ class Loader {
      * @author IrishAdo <me@irishado.com>
      * @param String the name of the Vendor
      * @param String Path to look for the class file.
-     * @example self::AddVendorPath('Edify', PP_NET_CL_PATH);
+     * @example self::registerVendor('Edify', PP_NET_CL_PATH);
      */
     public static function registerVendor($vendor, $path) {
         self::$vendors[$vendor] = $path;
     }
 
+    /**
+     * function to get a vendor path if you need it.
+     *
+     * @author IrishAdo <me@irishado.com>
+     * @param String the name of the Vendor
+     * @example self::getVendor('Edify');
+     */
+    public static function getVendor($vendor) {
+        return isset(self::$vendors[$vendor]) ? self::$vendors[$vendor] : NULL;
+    }
+
 }
 
 \Edify\Utils\Loader::init();
-?>
