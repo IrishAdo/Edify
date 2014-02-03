@@ -1,0 +1,29 @@
+<?php
+echo "<"."?php\n";
+?>
+namespace <?php echo $data['destinationNameSpace'] . $data['properties']["schema_name"];?>;
+/**
+  * <?php echo $data['$class']; ?> implements a Database Model Object
+  *
+  * @licence FreeTard licence
+  * @author IrishAdo <me@irishado.com>
+  */;
+class <?php echo $data['class'];?> extends \Edify\Database\Model {
+    var $databaseName = "<?php echo $data['properties']["schema_name"];?>";
+    var $tableName    = "<?php echo $data['table'];?>;
+    var $primaryKey   = "<?php echo $data['properties']["primary"];?>";
+    var $properties   = Array();
+    <?php
+            $max = count($data['properties']["columns"]) - 1;
+            foreach ($data['properties']["columns"] as $index => $columnData) {
+            ?>
+    $this->addProperty(
+        "<?php echo $columnData["column_name"] ?>",
+        \Edify\Database\Model::__UNDEFINED__,
+        <?php echo !is_null($columnData["data_type"])?$columnData["data_type"]:'NULL'; ?>,
+        <?php echo !is_null($columnData["precision"])?$columnData["precision"]:'NULL'; ?>
+    );<?php
+            }
+    ?>
+    );
+}
