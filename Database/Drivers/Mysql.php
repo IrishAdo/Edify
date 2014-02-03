@@ -65,7 +65,7 @@ class Mysql {
                 }
                 $results[$tableRow[0]]["columns"][count($results[$tableRow[0]]["columns"])] = Array(
                     "column_name" => $row["Field"],
-                    "system_data_type" => $colType,
+                    "data_type" => $colType,
                     "max_length" => "",
                     "precision" => $colPrecision,
                     "scale" => "",

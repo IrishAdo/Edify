@@ -16,6 +16,8 @@ class Model {
 	public $tableName = "";
 	public $primaryKey = "";
 	public $properties = Array();
+	public $types = Array();
+	public $percision = Array();
 
 	public function __construct($record = null) {
 		if ($record != null) {
@@ -97,6 +99,11 @@ class Model {
 		return $this->primaryKey;
 	}
 
+    public function addProperty($name, $default, $dataType=NULL, $percision=NULL) {
+        $this->properties[$name] =$default;
+        $this->types[$name] = $dataType;
+        $this->percision[$name] = $percision;
+    }
 }
 
 ?>

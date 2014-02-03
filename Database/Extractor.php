@@ -34,7 +34,7 @@ class Extractor {
     /**
      * Run the extractor against the supplied database connection
      */
-    function run(){
+    function run() {
         $tableData = $this->pdoObject->getSchema();
 
         foreach ($tableData as $table => $tableDefinition) {
@@ -88,29 +88,17 @@ class Extractor {
     function writeFiles($tables) {
         foreach ($tables as $table => $properties) {
             $class = $properties["fixedTableName"];
-            $buffer = "<?php
-namespace " . $this->destinationNameSpace . $properties["schema_name"] . ";
-/**
-  * $class implements a Database Model Object
-  *
-  * @licence FreeTard licence
-  * @author IrishAdo <me@irishado.com>
-  */;
-class $class extends \Edify\Database\Model {
-    var \$databaseName = \"" . $properties["schema_name"] . "\";
-    var \$tableName    = \"" . $table . "\";
-    var \$primaryKey   = \"" . $properties["primary"] . "\";
-    var \$properties   = Array(\n\t\t";
-            $max = count($properties["columns"]) - 1;
-            foreach ($properties["columns"] as $index => $columnData) {
-                $buffer .= "\"" . $columnData["column_name"] . "\"=> \Edify\Database\Model::__UNDEFINED__";
-                if ($max != $index) {
-                    $buffer .=", \n\t\t";
-                }
-            }
-            $buffer .="\n\t);
-}
-?>";
+
+            $data = Array(
+                'destinationNameSpace' => $this->destinationNameSpace . $properties["schema_name"],
+                'class' => $class,
+                'properties' => $properties,
+                'table' => $table
+            );
+            $edifyPath = \Edify\Utils\Loader::getVendor('Edify');
+            $view = new \Edify\View\Obj($data, $edifyPath . 'Templates/Database/Extractor/Class.phtml');
+            $buffer = $view->fetch();
+
             $filename = $this->destinationPath . "/" . $properties["schema_name"] . "/" . $class . ".php";
 
             \Edify\Utils\Log::Issue("[Edify\Database\Extractor]", "Saving class $class to $filename");
