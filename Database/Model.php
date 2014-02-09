@@ -47,18 +47,23 @@ class Model {
 	}
 
 	/** Assign an array of values into the object
+     *
+     * Update to theis function return TRUE at the minute
+     * This will be updated to auto validate the assignement
+     * of values and return if successfull or not.  Needs
+     * update to the structure to also define the types of
+     * columns validation will be datatype based.
+     *
 	 * @param Array Associate key is the property to assign the value to.
+     * @return Boolean was the assign ment successful?
 	 */
 	public function assign($record) {
 		foreach ($record as $field => $value) {
 			if (isset($this->properties[$field])) {
-				if (!is_null($value)) {
-					$this->properties[$field] = $value;
-				} else {
-					$this->properties[$field] = self::__UNDEFINED__;
-				}
+				$this->$field = $value; // use setter funciton above to secure this.
 			}
 		}
+        return true;
 	}
 
 	public function dump() {

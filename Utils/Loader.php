@@ -118,6 +118,11 @@ class Loader {
         return isset(self::$vendors[$vendor]) ? self::$vendors[$vendor] : NULL;
     }
 
+
+   public static function getVendorForNameSpacePath($path){
+       $parts = explode('\', $path');
+       return $parts[0];
+   }
 }
 
 \Edify\Utils\Loader::init();
