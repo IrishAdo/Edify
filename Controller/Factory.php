@@ -38,7 +38,7 @@ class Factory {
      * @param type $model
      * @param type $dbObject
      */
-    public function __construct($objectName,$className, $model, $dbObject) {
+    public function __construct($objectName, $className, $model, $dbObject) {
         $this->className = $className;
         $this->templatePath = \Edify\Utils\Loader::getVendorForNameSpacePath($objectName);
         $this->ModelName = $model;
@@ -63,7 +63,7 @@ class Factory {
      * so we will call the private _edit function and pass an
      * extracted model object from the database.
      *
-     * @param type $parameters
+     * @param Array $parameters
      * @return type
      */
     function update($parameters) {
@@ -75,13 +75,23 @@ class Factory {
     }
 
     /**
-     * private function that renders the form that
-     * allows a user to change properties of an object.
-     * It also works out if it should save the object.
+     * Both the Create and Update functions are almost 99% 
+     * identical the main difference would be that you
+     * either have a empty object to start with or you
+     * have extracted the object from the database.
      *
-     * @param type $object
-     * @param type $parameters
-     * @return type
+     * This is a private function that renders the form
+     * that allows a user to change properties of an
+     * object.
+     *
+     * It also works out if it should save the object
+     * after it assigns the changes to the model object
+     * if the assignement of variables was correct.
+     * Then it will redirect to the controller list view.
+     *
+     * @param Object $object
+     * @param Array $parameters
+     * @return String
      */
     private function _edit($object, $parameters) {
         if (isset($parameters['_action'])) {  // is the form submitted??
@@ -93,8 +103,29 @@ class Factory {
                 exit();
             }
         }
-        $view = new \Edify\View\Obj(Array('obj' => $object), $this->templatePath . 'Templates/Controller/' . $this->className . '/view.phtml');
+        $lookups = $this->_getLookUps($object);
+        $view = new \Edify\View\Obj(
+                Array(
+            'obj' => $object,
+            'lookups'=>$lookups
+                ), $this->templatePath . 'Templates/Controller/' . $this->className . '/view.phtml');
         return $view->fetch();
+    }
+
+    /**
+     * Take an object and look at the model which will 
+     * in a future update list any related tables.  If 
+     * there is a related table then extract all of the
+     * lookup records and pass to the template builder.
+     * 
+     * This will allow the template to render a select
+     * combo box for the user to select one option.
+     * 
+     * @param Object $object The model object to get lookup information for.
+     */
+    private function _getLookUps($object){
+        /// TODO
+        return Array();
     }
 
     /**
@@ -111,24 +142,31 @@ class Factory {
         return $view->fetch();
     }
 
-    function delete($parameters = Array(), $orderby) {
+    /**
+     * Delete a record from the database when the primary
+     * key is passed as a parameter.
+     *
+     * @param Array $parameters
+     * @return String buffer of the are you sure?
+     * @throws \Edify\Exceptions\Database
+     */
+    function delete($parameters = Array()) {
 
         if (!isset($parameters[$this->recordSet->primaryKey])) {
             throw new \Edify\Exceptions\Database("Primary key not set");
         }
+        // get the record
         $dataSet = $this->RecordSet->select(Array($this->recordSet->primaryKey => $parameters[$this->recordSet->primaryKey]), $orderby);
+        // there should be only one
         if (count($dataSet) != 1) {
             throw new \Edify\Exceptions\Database("Unable to find single instance of that record.");
         }
-
+        // if _action exists and it is 'delete' then
         if (isset($parameters['_action']) && $parameters['_action'] = 'delete') {  // is the form submitted??
             unset($parameters['_action']);
-            $success = $this->RecordSet->delete($dataSet[0]);
-            if ($success) {
-                $object = $this->recordSet->save($object);
-                header('Location: /' . $this->className . '/');
-                exit();
-            }
+            $this->RecordSet->delete($dataSet[0]);
+            header('Location: /' . $this->className . '/');
+            exit();
         }
         $view = new \Edify\View\Obj(Array('obj' => $dataSet), $this->templatePath . 'Templates/Controller/' . $this->className . '/delete.phtml');
         return $view->fetch();
