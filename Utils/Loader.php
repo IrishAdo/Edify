@@ -118,11 +118,18 @@ class Loader {
         return isset(self::$vendors[$vendor]) ? self::$vendors[$vendor] : NULL;
     }
 
+    /**
+     * Get the first part of a namespace so that the get vendor 
+     * function will return the path to the project.
+     * 
+     * @param String $path
+     * @return type
+     */
+    public static function getVendorForNameSpacePath($path) {
+        $parts = explode('\\', $path);
+        return $parts[0] . '/';
+    }
 
-   public static function getVendorForNameSpacePath($path){
-       $parts = explode('\', $path');
-       return $parts[0];
-   }
 }
 
 \Edify\Utils\Loader::init();

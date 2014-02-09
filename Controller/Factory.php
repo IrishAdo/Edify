@@ -40,7 +40,7 @@ class Factory {
      */
     public function __construct($objectName, $className, $model, $dbObject) {
         $this->className = $className;
-        $this->templatePath = \Edify\Utils\Loader::getVendorForNameSpacePath($objectName);
+        $this->templatePath = \Edify\Utils\Loader::getVendorForNameSpacePath($objectName) . 'Templates/Controller/' . $this->className;
         $this->ModelName = $model;
         $this->dbObject = $dbObject;
         $this->recordSet = new \Edify\Database\Record($this->ModelName, $this->dbObject);
@@ -108,7 +108,7 @@ class Factory {
                 Array(
             'obj' => $object,
             'lookups'=>$lookups
-                ), $this->templatePath . 'Templates/Controller/' . $this->className . '/view.phtml');
+                ), $this->templatePath .'/view.phtml');
         return $view->fetch();
     }
 
@@ -138,7 +138,7 @@ class Factory {
      */
     function retrieve($parameters = Array(), $orderby = "") {
         $dataSet = $this->RecordSet->select($parameters, $orderby);
-        $view = new \Edify\View\Obj(Array('obj' => $dataSet), $this->templatePath . 'Templates/Controller/' . $this->className . '/retrieve.phtml');
+        $view = new \Edify\View\Obj(Array('obj' => $dataSet), $this->templatePath . '/retrieve.phtml');
         return $view->fetch();
     }
 
@@ -168,7 +168,7 @@ class Factory {
             header('Location: /' . $this->className . '/');
             exit();
         }
-        $view = new \Edify\View\Obj(Array('obj' => $dataSet), $this->templatePath . 'Templates/Controller/' . $this->className . '/delete.phtml');
+        $view = new \Edify\View\Obj(Array('obj' => $dataSet), $this->templatePath . '/delete.phtml');
         return $view->fetch();
     }
 
