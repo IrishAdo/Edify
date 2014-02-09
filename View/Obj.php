@@ -25,7 +25,7 @@ class Obj {
     }
 
     function assign($key, $value) {
-        \Edify\Utils\Log::Issue("[Edify\View\Obj]", "Adding $key to data source");
+        \Edify\Utils\Log::Issue("[Edify\View\Obj]", "Adding $key of type ". gettype($value)." to data source for template");
         $this->data[$key] = $value;
     }
 
@@ -33,7 +33,7 @@ class Obj {
         if (!is_null($template)) {
             $this->setTemplate($template);
         }
-        \Edify\Utils\Log::Issue("[Edify\View\Obj]", "fetching ");
+        \Edify\Utils\Log::Issue("[Edify\View\Obj]", "fetching");
         ob_start();
         $data = $this->data;
         require $this->template;
